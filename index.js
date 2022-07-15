@@ -8,7 +8,12 @@ const app = express();
 require("dotenv").config();
 
 // DB Connection
-mongoose.connect(process.env.MONGODB_URI || process.env.DATABASE, {useNewUrlParser: true,useUnifiedTopology: true, useCreateIndex: true})
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => {
     console.log("DB Connected");
   })
@@ -23,7 +28,7 @@ app.use(cors());
 
 // Basic Testing Purposes
 app.get("/", (req, res) => {
- return res.json({message:"Hello World!"});
+  return res.json({ message: "Hello World!" });
 });
 
 // Import Routes
